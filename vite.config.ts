@@ -1,9 +1,14 @@
-import { defineConfig, Plugin } from 'vite'
-import nodePolyfills from 'rollup-plugin-polyfill-node'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [nodePolyfills({ include: ['stream'] })],
-  optimizeDeps: {
-    exclude: ['@solana/web3.js'],
+  resolve: {
+    alias: {
+      process: 'process/browser',
+      stream: 'stream-browserify',
+      zlib: 'browserify-zlib',
+      util: 'util',
+      http: 'http-browserify',
+      'node-fetch': 'isomorphic-fetch',
+    },
   },
 })
